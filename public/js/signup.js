@@ -60,7 +60,25 @@ signupBtn.addEventListener('click',()=> {
         errorAddress.textContent = 'address must not empty';
     }
     else {
-      console.log(done)
+      const obj = {
+        name :name.value,
+        email : email.value,
+        password : password.value,
+        address : address.value,
+      }
+      fetch('/signup', {
+        method :'post',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(obj),
+      })
+      .then(res => res.json())
+      .then(data => {
+        swal("Added!", data.massege+ ' you now to login', "success");
+      } 
+      )
+      .catch(err => console.log(err))
     }
 });
 
