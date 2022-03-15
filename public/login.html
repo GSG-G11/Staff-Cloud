@@ -11,44 +11,45 @@
     <div class="limiter">
       <div class="container-login">
         <div class="wrap-login">
-          <form class="login-form validate-form">
+          <form class="login-form validate-form form-control">
             <span class="login-form-title"> Welcome </span>
 
-            <form id="form" class="form-control" action="">
-              <div class="wrap-input">
-                <input
-                  class="input email-input"
-                  type="email"
-                  name="email"
-                  placeholder="Email"
-                />
-              </div>
+            <div class="wrap-input">
+              <input class="input email-input" type="email" name="email" placeholder="Email" />
+            </div>
 
-              <div class="wrap-input">
-                <input
-                  class="input password-input"
-                  type="password"
-                  name="password"
-                  placeholder="Password"
-                />
-              </div>
+            <div class="wrap-input">
+              <input
+                class="input password-input"
+                type="password"
+                name="password"
+                placeholder="Password"
+              />
+            </div>
 
-              <div class="container-login-form-btn">
-                <div class="wrap-login-form-btn">
-                  <div class="login-form-bgbtn"></div>
-                  <button class="login-form-btn">Login</button>
-                </div>
+            <div class="container-login-form-btn">
+              <div class="wrap-login-form-btn">
+                <div class="login-form-bgbtn"></div>
+                <button class="login-form-btn">Login</button>
               </div>
-            </form>
+            </div>
 
             <div class="text-center">
               <span class="txt1"> Don’t have an account? </span>
 
               <a class="txt2" href="/register"> Sign Up </a>
             </div>
+            <div class="error-container"></div>
           </form>
         </div>
       </div>
     </div>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.26.1/axios.min.js"
+      integrity="sha512-bPh3uwgU5qEMipS/VOmRqynnMXGGSRv+72H/N260MQeXZIK4PG48401Bsby9Nq5P5fz7hy5UGNmC/W1Z51h2GQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script src="./js/login.js"></script>
   </body>
 </html>
