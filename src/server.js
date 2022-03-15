@@ -1,4 +1,5 @@
 require('dotenv').config();
+require('express-async-errors');
 const app = require('./app');
 const connection = require('./database/config/connection');
 

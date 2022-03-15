@@ -20,7 +20,7 @@ CREATE TABLE posts (
   FOREIGN KEY (user_id) REFERENCES users (id)
 );
 
-INSERT INTO users (name, email, password, address) VALUES ('John Doe', 'John@Doe.com', 'admin', 'Gaza Street'), ('Jane Doe', 'Jane@Doe.com', 'admin', 'Palestine Street'), ('Joe Doe', 'Jae@Doe.com', 'admin', 'Rafah Street');
+INSERT INTO users (name, email, password, address) VALUES ('John Doe', 'John@Doe.com', 'Admin@123', 'Gaza Street'), ('Jane Doe', 'Jane@Doe.com', 'Admin@123', 'Palestine Street'), ('Joe Doe', 'Jae@Doe.com', 'Admin@123', 'Rafah Street');
 
 INSERT INTO posts (title, description, salary, user_id) VALUES ('Hiring Now', 'Software Developer', '20000', 1), ('Hiring Now', 'Techincal Recuriter', '30000', 2), ('Hiring Now', 'Software Engineer', '40000', 3);
 
