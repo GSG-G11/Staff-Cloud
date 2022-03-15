@@ -66,7 +66,6 @@ loginBtn.addEventListener('click', e => {
           errorContainer.appendChild(error);
         } else {
           res.json().then(data => {
-            document.cookie = `token=${data.token}; path=/`;
             window.location.href = '/';
           });
         }
