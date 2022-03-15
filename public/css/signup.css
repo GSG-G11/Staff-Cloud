@@ -1,0 +1,71 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    display: flex;height: 100vh;
+}
+.container main {
+    display: flex ;
+    flex-direction: column;
+    width: 50%;
+    margin: 9em auto;
+}
+.create-account {
+    color: #b721ff;
+    font-size: 3em;
+    margin-bottom: 0.5em;
+    text-align: center;
+}
+.control-form {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: .5em;
+}
+.control-form  input{
+    width: 25em;
+    height: 2.5em;
+    padding: 0.5em;
+    margin: 0 auto;
+}
+.control-form  input:focus {
+    outline: none;
+}
+#sign-up {
+    width: 25em;
+    height: 4em;
+    padding: .5em 4em;
+    background: -webkit-linear-gradient(right, #21d4fd, #b721ff, #21d4fd, #b721ff);
+    outline: none;
+    border: none;
+    color: #fff;
+    margin: .5em auto;
+    border-radius: 1em;
+    cursor: pointer;
+    font-weight: bold;
+}
+.welcome {
+    background: -webkit-linear-gradient(right, #21d4fd, #b721ff, #21d4fd, #b721ff);
+    width: 50%;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.welcome h1 {
+    margin-bottom: 0.5em;
+}
+.welcome #login {
+    margin-top: 1em;
+    background: none;
+    border: 1px solid #fff;
+    padding: .5em 4em;
+    border-radius: 1em;
+    color: #fff;
+    font-size: 1.2em;
+    font-weight: bold;
+    cursor: pointer;
+}
