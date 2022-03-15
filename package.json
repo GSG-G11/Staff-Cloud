@@ -6,12 +6,13 @@
   "scripts": {
     "start": "cross-env NODE_ENV=production node src/server.js",
     "dev": "cross-env NODE_ENV=development nodemon src/server.js",
-    "build": "cross-env NODE_ENV=production src/database/config/build.js"
+    "build": "cross-env NODE_ENV=development node src/database/config/build.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "compression": "^1.7.4",
     "cookie-parser": "^1.4.6",
     "cross-env": "^7.0.3",
@@ -19,6 +20,7 @@
     "express": "^4.17.3",
     "helmet": "^5.0.2",
     "joi": "^17.6.0",
+    "jsonwebtoken": "^8.5.1",
     "pg": "^8.7.3"
   },
   "devDependencies": {
