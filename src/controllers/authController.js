@@ -2,6 +2,7 @@ const connection = require('../database/config/connection');
 const {sign} = require('jsonwebtoken');
 const Joi = require('joi');
 const bcrypt = require('bcrypt');
+const cookieParser = require('cookie-parser');
 
 const {NotFoundError} = require('../errors');
 
@@ -53,6 +54,7 @@ const login = async (req, res) => {
 
   const token = sign(payload, process.env.JWT_SECRET, {expiresIn: '1h'});
 
+  res.cookie('token', token, {httpOnly: true, secure: true, maxAge: 3600000});
   res.status(200).json({
     message: 'Login successful',
     token,
