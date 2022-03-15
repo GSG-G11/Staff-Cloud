@@ -44,9 +44,32 @@ loginBtn.addEventListener('click', e => {
       headers: {
         'Content-Type': 'application/json',
       },
+      body: JSON.stringify({
+        email,
+        password,
+      }),
     })
       .then(res => {
-        console.log(res.json());
+        if (res.status === 404) {
+          const error = document.createElement('p');
+          error.classList.add('error-message');
+          error.innerHTML = 'User not found';
+          const errorContainer = document.querySelector('.error-container');
+          errorContainer.innerHTML = '';
+          errorContainer.appendChild(error);
+        } else if (res.status === 400) {
+          const error = document.createElement('p');
+          error.classList.add('error-message');
+          error.innerHTML = 'Invalid Email or Password';
+          const errorContainer = document.querySelector('.error-container');
+          errorContainer.innerHTML = '';
+          errorContainer.appendChild(error);
+        } else {
+          res.json().then(data => {
+            document.cookie = `token=${data.token}; path=/`;
+            window.location.href = '/';
+          });
+        }
       })
       .catch(err => {
         console.log(err);

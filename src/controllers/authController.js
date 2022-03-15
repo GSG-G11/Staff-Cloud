@@ -3,7 +3,7 @@ const {sign} = require('jsonwebtoken');
 const Joi = require('joi');
 const bcrypt = require('bcrypt');
 
-const {BadRequest, NotFoundError} = require('../errors');
+const {NotFoundError} = require('../errors');
 
 const login = async (req, res) => {
   const {email, password} = req.body;
@@ -20,7 +20,9 @@ const login = async (req, res) => {
   const {error} = schema.validate(req.body, {abortEarly: false});
 
   if (error) {
-    throw new BadRequest(error.details[0].message);
+    return res.status(400).json({
+      error: error.details.map(err => err.message),
+    });
   }
 
   // Check if the user exists
@@ -38,7 +40,9 @@ const login = async (req, res) => {
   const validatePassword = password === userEmail.rows[0].password;
 
   if (!validatePassword) {
-    throw new BadRequest('Password is incorrect');
+    return res.status(400).json({
+      error: 'Invalid password',
+    });
   }
 
   // Create and assign a token
