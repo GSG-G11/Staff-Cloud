@@ -7,27 +7,76 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <header id="main-header">
-   <h2 class="user-name">User Name</h2>
+<header> 
+  <nav>
+    <a href="#home">
+    <img src="./images/vector/default-monochrome.svg" alt="" class="logo"></a>
+    <ul class="nav-list">
+      <a href="/register" class="nav-link">Register</a>
+      <a href="/login" class="nav-link">Login</a>
+    </ul>
+  </nav>
 </header>
-<form class="add-job-form">
-  <div class="title-slaray">
-    <input class="text" id="add-post-title" type="text" name="add-post-title" placeholder="Post title" required="">
-    <input class="text" id="add-post-salary" type="text" name="add-post-salary" placeholder="Post salary" required="">
-  </div>
-  <input class="text" id="add-post-descriptin" type="text" name="add-post-descriptin" placeholder="Post description" required="">
-  <input type="submit" id="add-post" value="POST">
-</form>
-<div class="posts">
-  <div class="user-date">
-    <h1 class="user"> user</h1>
-    <h3 class="date">12-5-2020</h3>
-  </div>
-  <div class="title-slary-posted">
-    <h2 class="title"> title</h2>
-    <h3 class="salary">2000$ </h3>
-  </div>
-  <p class="description"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut soluta rem nobis praesentium, ipsum distinctio ea, odio dignissimos quas porro eius fugiat atque voluptatem, facilis pariatur dolores laudantium recusandae laboriosam!</p>
+<div class="container">
+  <section class="create-job">
+    <form id="form" class="form-control">
+      <div class="row">
+        <input type="text" class="input-control" name="title" placeholder="Title">
+        <input type="text" class="input-control" name="salary" placeholder="Salary">
+      </div>
+      <div class="row">
+        <textarea name="description" id="" cols="30" rows="10" placeholder="More about the job.."></textarea>
+      </div>
+      <button class="btn create-job-btn">Add a job</button>
+    </form>
+  </section>
+
+  <section class="jobs" id="home">
+    <div class="job-card">
+      <button class="delete-btn">x</button>
+      <p class="job-title">Senior JavaScript Engineer</p>
+      <div class="row">
+        <p class="user-created">Acelerate</p> <span class="date-created">03-16-2022</span>
+
+      </div>
+      <p class="job-desc">Acelerate is using virtual food brands to maximize restaurant profitability by increasing their delivery sales. We’re funded by Sequoia Capital and expanding across the country. Join us as we grow into the world's largest restaurant company!</p>
+      <p class="job-salary">20000$</p>
+    </div>
+    <div class="job-card">
+      <button class="delete-btn">x</button>
+      <p class="job-title">Senior JavaScript Engineer</p>
+      <div class="row">
+        <p class="user-created">Acelerate</p> <span class="date-created">03-16-2022</span>
+
+      </div>
+      <p class="job-desc">Acelerate is using virtual food brands to maximize restaurant profitability by increasing their delivery sales. We’re funded by Sequoia Capital and expanding across the country. Join us as we grow into the world's largest restaurant company!</p>
+      <p class="job-salary">20000$</p>
+    </div>
+
+    <div class="job-card">
+      <button class="delete-btn">x</button>
+      <p class="job-title">Senior JavaScript Engineer</p>
+      <div class="row">
+        <p class="user-created">Acelerate</p> <span class="date-created">03-16-2022</span>
+
+      </div>
+      <p class="job-desc">Acelerate is using virtual food brands to maximize restaurant profitability by increasing their delivery sales. We’re funded by Sequoia Capital and expanding across the country. Join us as we grow into the world's largest restaurant company!</p>
+      <p class="job-salary">20000$</p>
+    </div>
+
+    <div class="job-card">
+      <button class="delete-btn">x</button>
+      <p class="job-title">Senior JavaScript Engineer</p>
+      <div class="row">
+        <p class="user-created">Acelerate</p> <span class="date-created">03-16-2022</span>
+
+      </div>
+      <p class="job-desc">Acelerate is using virtual food brands to maximize restaurant profitability by increasing their delivery sales. We’re funded by Sequoia Capital and expanding across the country. Join us as we grow into the world's largest restaurant company!</p>
+      <p class="job-salary">20000$</p>
+    </div>
+
+  </section>
 </div>
+<script src="js/script.js"></script>
 </body>
 </html>
