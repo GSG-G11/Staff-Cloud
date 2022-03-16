@@ -238,3 +238,12 @@ textarea {
 .delete-btn:hover {
   background-color: rgb(219, 0, 0)
 }
+
+.error {
+  color: red;
+  font-size: 1.2rem;
+  margin-top: 0.8rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
