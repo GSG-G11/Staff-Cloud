@@ -1,16 +1,16 @@
 const { verifyToken } = require('../utils/jwt');
+require('dotenv').config();
 
 const {
-  env: { SECRET_KEY },
+  env: { JWT_SECRET },
 } = process;
-
 module.exports = async (req, res, next) => {
   try {
     const {
       cookies: { token },
     } = req;
     if (token) {
-      const value = await verifyToken(token, SECRET_KEY);
+      const value = await verifyToken(token, JWT_SECRET);
       req.body.userId = value.userId;
       next();
     } else {
