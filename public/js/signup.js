@@ -43,15 +43,17 @@ signupBtn.addEventListener('click',()=> {
         errorEmail.textContent = '';
         errorPassword.textContent = 'password must not empty';
     }
-    else if (password.value.length < 6 ) {
+    else if (password.value.length < 8 ) {
         errorName.textContent = '';
         errorEmail.textContent = '';
-        errorPassword.textContent = 'password length at least 6 char';
+        errorPassword.textContent = 'password length at least 8 char';
     }
-    else if (!containsUppercase(password.value) || !containsNumber(password.value)) {
+    else if (
+      !password.value.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/)
+      ) {
         errorName.textContent = '';
         errorEmail.textContent = '';
-        errorPassword.textContent = 'Must at least contain one number and uppercase letter';
+        errorPassword.textContent = 'Must at least contain one number,lowercase letter, uppercase letter and spical character';
     }
     else if (address.value == '') {
         errorName.textContent = '';
