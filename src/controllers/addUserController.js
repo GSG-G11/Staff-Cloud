@@ -1,5 +1,4 @@
-const bcrypt = require('bcryptjs')
-const jwt = require("jsonwebtoken");
+const bcrypt = require('bcrypt')
 require('dotenv').config();
 const signupSchema = require("../validation/signupSchema");
 const {addUserQuery} = require('../database/queries/queries');
