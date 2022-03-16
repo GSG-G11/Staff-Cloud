@@ -8,8 +8,7 @@ const getPostRouter = require('./routes/getPosts');
 const userRouter = require('./routes/userRoutes');
 const authRouter = require('./routes/authRoutes');
 const errorHandler = require('./middlewares/error-handler');
-const logoutController = require('./controllers/logoutController');
-const checkSignin = require('./middlewares/checkSignin');
+
 
 
 app.use(cookieParser());
@@ -22,7 +21,7 @@ app.use('/api/auth', authRouter);
 app.use(userRouter);
 app.use(postRouter);
 app.use(getPostRouter);
-app.get('/logout',checkSignin, logoutController );
+
 
 app.use(errorHandler);
 
