@@ -38,8 +38,8 @@ createJobBtn.addEventListener('click', (e) => {
 
 
 async function getJobs() {
-    await fetch('/posts').then(res=> res.json()).then(({posts}) => {
-        posts.forEach(post => {
+    await fetch('/posts').then(res=> res.json()).then(  ({posts}) => {
+        posts.forEach(async post => {
             
             const jobCard = document.createElement('div');
             jobCard.classList.add('job-card');
@@ -54,9 +54,10 @@ async function getJobs() {
             row.classList.add('row');
             jobCard.appendChild(row);
 
+            const userName = await getUserName(post.user_id)
             const createdBy = document.createElement('p');
             createdBy.classList.add('user-created');
-            createdBy.textContent = `Created by: ${post.created_by}`;
+            createdBy.textContent = `Created by:${userName}`;
             const createdAt = document.createElement('span');
             createdAt.classList.add('date-created');
             createdAt.textContent = `Created at: ${post.created_at.slice(0, 10)}`;
@@ -72,16 +73,15 @@ async function getJobs() {
             jobSalary.classList.add('job-salary');
             jobSalary.textContent = `Salary: ${post.salary}$`;
             jobCard.appendChild(jobSalary);
-
-
-
-
-
-
-
         })
     })
 
+}
+
+async function getUserName(id) {
+    const userName = await fetch(`/users/posts/${id}`).then(res=> res.json()).then(({name}) => name)
+
+    return userName;
 }
 
 
