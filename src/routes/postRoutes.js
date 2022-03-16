@@ -4,6 +4,7 @@ const deletePost = require('../controllers/deletePost');
 const verifyUser = require('../middlewares/verifyUser');
 const userOwnsPost = require('../middlewares/userOwnsPost');
 const loginedUser = require('../controllers/loginedUser');
+const logoutController = require('../controllers/logoutController');
 
 router.post('/post', verifyUser, addPost);
 router.delete('/post/:id', verifyUser, userOwnsPost , deletePost);
