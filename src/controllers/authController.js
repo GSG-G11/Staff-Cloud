@@ -2,6 +2,9 @@ const { sign } = require('jsonwebtoken');
 const Joi = require('joi');
 const bcrypt = require('bcrypt');
 const connection = require('../database/config/connection');
+const cookieParser = require('cookie-parser');
+const {NotFoundError} = require('../errors');
+
 
 const login = async (req, res) => {
   const { email, password } = req.body;
@@ -27,9 +30,7 @@ const login = async (req, res) => {
   const userEmail = await connection.query('SELECT * FROM users WHERE email = $1', [email]);
 
   if (!userEmail.rows[0]) {
-    return res.status(400).json({
-      error: 'Email does not exist, Please Sign Up',
-    });
+    throw new NotFoundError('User not found');
   }
 
   // Check if the password is correct
@@ -41,7 +42,7 @@ const login = async (req, res) => {
 
   if (!validatePassword) {
     return res.status(400).json({
-      error: 'Password is incorrect',
+      error: 'Invalid password',
     });
   }
 
@@ -51,8 +52,10 @@ const login = async (req, res) => {
     email: userEmail.rows[0].email,
   };
 
-  const token = await sign(payload, process.env.JWT_SECRET, { expiresIn: '1h' });
+  const token = sign(payload, process.env.JWT_SECRET, {expiresIn: '1h'});
 
+
+  res.cookie('token', token, {httpOnly: true, secure: true, maxAge: 3600000});
   res.status(200).json({
     message: 'Login successful',
     token,

@@ -30,6 +30,13 @@
     padding: 0.5em;
     margin: 0 auto;
 }
+.control-form .error {
+    width: 20em;
+    padding: 0.5em;
+    margin: 0 auto;
+    color:red;
+}
+
 .control-form  input:focus {
     outline: none;
 }
