@@ -1,28 +1,28 @@
-const connection = require('../database/config/connection');
-const {sign} = require('jsonwebtoken');
+const { sign } = require('jsonwebtoken');
 const Joi = require('joi');
 const bcrypt = require('bcrypt');
+const connection = require('../database/config/connection');
 const cookieParser = require('cookie-parser');
-
 const {NotFoundError} = require('../errors');
 
+
 const login = async (req, res) => {
-  const {email, password} = req.body;
+  const { email, password } = req.body;
 
   // Validate the user input
   const schema = Joi.object({
     email: Joi.string().email().required(),
-    //Password should contain at least one number, one lowercase and one uppercase letter and one special charcater, and at least 8 characters long
+    // Password should contain at least one number, one lowercase and one uppercase letter and one special charcater, and at least 8 characters long
     password: Joi.string()
       .regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/)
       .required(),
   });
 
-  const {error} = schema.validate(req.body, {abortEarly: false});
+  const { error } = schema.validate(req.body, { abortEarly: false });
 
   if (error) {
     return res.status(400).json({
-      error: error.details.map(err => err.message),
+      error: error.details.map((err) => err.message),
     });
   }
 
@@ -54,6 +54,7 @@ const login = async (req, res) => {
 
   const token = sign(payload, process.env.JWT_SECRET, {expiresIn: '1h'});
 
+
   res.cookie('token', token, {httpOnly: true, secure: true, maxAge: 3600000});
   res.status(200).json({
     message: 'Login successful',
@@ -61,4 +62,4 @@ const login = async (req, res) => {
   });
 };
 
-module.exports = {login};
+module.exports = { login };
