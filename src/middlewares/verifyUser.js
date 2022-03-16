@@ -14,9 +14,12 @@ const verifyToken = (req, res, next) => {
     if (err) {
       throw new UnauthenticatedError('Invalid token');
     }
-    const {userId, email} = decoded;
+
+    const {userId, email, post_user_id} = decoded;
     const user = {userId, email};
+
     req.user = user;
+    
     next();
   })
 };
