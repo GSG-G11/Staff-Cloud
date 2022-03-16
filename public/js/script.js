@@ -1,5 +1,6 @@
 const createJobBtn = document.querySelector('.create-job-btn');
 const form = document.querySelector('form');
+const jobsSection = document.querySelector('.jobs');
 
 createJobBtn.addEventListener('click', (e) => {
     e.preventDefault();
@@ -31,3 +32,57 @@ createJobBtn.addEventListener('click', (e) => {
         });
     }
 })
+
+
+
+
+
+async function getJobs() {
+    await fetch('/posts').then(res=> res.json()).then(({posts}) => {
+        posts.forEach(post => {
+            
+            const jobCard = document.createElement('div');
+            jobCard.classList.add('job-card');
+            jobsSection.appendChild(jobCard);
+
+            const jobTitle = document.createElement('p');
+            jobTitle.classList.add('job-title');
+            jobTitle.textContent = post.title;
+            jobCard.appendChild(jobTitle);
+
+            const row = document.createElement('div');
+            row.classList.add('row');
+            jobCard.appendChild(row);
+
+            const createdBy = document.createElement('p');
+            createdBy.classList.add('user-created');
+            createdBy.textContent = `Created by: ${post.created_by}`;
+            const createdAt = document.createElement('span');
+            createdAt.classList.add('date-created');
+            createdAt.textContent = `Created at: ${post.created_at.slice(0, 10)}`;
+            row.appendChild(createdBy);
+            row.appendChild(createdAt);
+
+            const jobDescription = document.createElement('p');
+            jobDescription.classList.add('job-desc');
+            jobDescription.textContent = post.description;
+            jobCard.appendChild(jobDescription);
+
+            const jobSalary = document.createElement('p');
+            jobSalary.classList.add('job-salary');
+            jobSalary.textContent = `Salary: ${post.salary}$`;
+            jobCard.appendChild(jobSalary);
+
+
+
+
+
+
+
+        })
+    })
+
+}
+
+
+getJobs();
