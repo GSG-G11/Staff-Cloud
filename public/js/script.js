@@ -112,7 +112,8 @@ async function getJobs() {
             });
           });
         }
-      });
+      })
+        .catch((err) => console.log(err));
     });
   });
 }
