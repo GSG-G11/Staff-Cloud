@@ -1,7 +1,11 @@
+
+/* eslint-disable linebreak-style */
+
 const regBtn = document.querySelector('.regBtn');
 const loginBtn = document.querySelector('.loginBtn');
 const logoutBtn = document.querySelector('.logoutBtn');
 const jobsSection = document.querySelector('.jobs');
+
 const createForm = () => {
   const createJob = document.querySelector('.create-job');
   createJob.style.display = 'block';
@@ -39,14 +43,14 @@ const createForm = () => {
   secondRow.appendChild(textArea);
   formJob.append(firstRow, secondRow, submitBtn);
   createJob.appendChild(formJob);
-  // eslint-disable-next-line no-use-before-define
   addPost();
 };
 
 fetch('/login/user')
   .then((res) => res.json())
   .then((data) => {
-    if (data.meg === 'yes there have user') {
+
+    if (data.meg == 'yes there have user') {
       regBtn.style.display = 'none';
       loginBtn.style.display = 'none';
       logoutBtn.style.display = 'block';
@@ -56,6 +60,7 @@ fetch('/login/user')
   .catch((err) => console.log(err));
 
 async function getJobs() {
+  jobsSection.innerHTML = '';
   await fetch('/posts').then((res) => res.json()).then(({ posts }) => {
     posts.forEach(async (post) => {
       const jobCard = document.createElement('div');
@@ -71,8 +76,7 @@ async function getJobs() {
       row.classList.add('row');
       jobCard.appendChild(row);
 
-      // eslint-disable-next-line no-use-before-define
-      const userName = await getUserName(post.user_id);
+      const userName = (await getUserName(post.user_id)).name;
       const createdBy = document.createElement('p');
       createdBy.classList.add('user-created');
       createdBy.textContent = `Created by:${userName}`;
@@ -91,11 +95,33 @@ async function getJobs() {
       jobSalary.classList.add('job-salary');
       jobSalary.textContent = `Salary: ${post.salary}$`;
       jobCard.appendChild(jobSalary);
+
+      fetch('/login/user').then((res) => res.json()).then((data) => data.id).then((id) => {
+        if (id == post.user_id) {
+          const deleteButton = document.createElement('button');
+          deleteButton.classList.add('delete-btn');
+          deleteButton.textContent = 'x';
+          jobCard.appendChild(deleteButton);
+          deleteButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            fetch(`/post/${post.id}`, {
+              method: 'DELETE',
+            }).then((res) => {
+              e.target.parentElement.remove();
+              if (res.status === 204) {
+                swal('Deleted!', 'Your post has been deleted.', 'success');
+                getJobs();
+              }
+            });
+          });
+        }
+      })
+        .catch((err) => console.log(err));
     });
   });
 }
-async function getUserName(id) {
-  const userName = await fetch(`/users/posts/${id}`).then((res) => res.json()).then(({ name }) => name);
+async function getUserName(post_id) {
+  const userName = await fetch(`/users/posts/${post_id}`).then((res) => res.json()).then(({ id, name }) => ({ id, name }));
 
   return userName;
 }
@@ -108,7 +134,6 @@ const addPost = () => {
   createJobBtn.addEventListener('click', (e) => {
     e.preventDefault();
 
-    // eslint-disable-next-line no-unused-expressions
     document.querySelector('.error') ? document.querySelector('.error').remove() : null;
     const title = document.querySelector('[name="title"]').value;
     const description = document.querySelector('textarea[name="description"]').value;
@@ -147,10 +172,8 @@ const addPost = () => {
       body: JSON.stringify(data),
     })
       .then((res) => res.json())
-      // eslint-disable-next-line no-shadow
       .then((data) => {
         if (data.message === 'Post successfully added') {
-          // eslint-disable-next-line no-undef
           swal('Added!', data.message, 'success');
           getJobs();
         }
@@ -158,6 +181,7 @@ const addPost = () => {
       .catch((err) => console.log(err));
   });
 };
+
 
 fetch('/username')
   .then((res) => res.json())

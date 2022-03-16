@@ -1,8 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600&display=swap');
+
 * {
-  padding: 0;
   margin: 0;
+  padding: 0;
   box-sizing: border-box;
-  font-family: sans-serif;
+  font-family: 'Open Sans', sans-serif;
   max-width: 100%;
 }
 body {
@@ -163,6 +165,7 @@ textarea {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  width: 100%;
 }
 
 

@@ -16,8 +16,7 @@ const verifyToken = (req, res, next) => {
       throw new UnauthenticatedError('Invalid token');
     }
 
-    // eslint-disable-next-line no-unused-vars
-    const { userId, email, post_user_id } = decoded;
+    const { userId, email } = decoded;
     const user = { userId, email };
 
     req.user = user;
