@@ -67,7 +67,7 @@ loginBtn.addEventListener('click', e => {
         } else {
           res.json().then(data => {
             window.location.href = '/';
-          });
+          })
         }
       })
       .catch(err => {

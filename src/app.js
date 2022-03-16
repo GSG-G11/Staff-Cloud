@@ -9,6 +9,8 @@ const userRouter = require('./routes/userRoutes');
 const authRouter = require('./routes/authRoutes');
 const errorHandler = require('./middlewares/error-handler');
 
+
+
 app.use(cookieParser());
 app.disable('x-powered-by');
 app.use(express.urlencoded({ extended: false }));
@@ -19,6 +21,8 @@ app.use('/api/auth', authRouter);
 app.use(userRouter);
 app.use(postRouter);
 app.use(getPostRouter);
+
+
 app.use(errorHandler);
 
 module.exports = app;

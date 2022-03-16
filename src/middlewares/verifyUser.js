@@ -7,7 +7,7 @@ const verifyToken = (req, res, next) => {
   
   // If no token, return error
   if (!token) {
-    throw new UnauthenticatedError('No token provided');
+    throw new UnauthenticatedError('No token provided'); 
   }
 
   jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {

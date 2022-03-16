@@ -7,7 +7,6 @@ const {NotFoundError} = require('../errors');
 
 const login = async (req, res) => {
   const { email, password } = req.body;
-
   // Validate the user input
   const schema = Joi.object({
     email: Joi.string().email().required(),
@@ -27,7 +26,7 @@ const login = async (req, res) => {
   }
   // Check if the user exists
   const userEmail = await connection.query('SELECT * FROM users WHERE email = $1', [email]);
-
+ 
   if (!userEmail.rows[0]) {
     throw new NotFoundError('User not found');
   }
@@ -43,17 +42,16 @@ const login = async (req, res) => {
 
   // Create and assign a token
   try {
+
     const payload = {
       userId: userEmail.rows[0].id,
       email: userEmail.rows[0].email,
     };
     const token = sign(payload, process.env.JWT_SECRET, {expiresIn: '1h'});
-
     // Set the token in the cookies
     return res.cookie('token', token, {httpOnly: true, sameSite: true}).json({
       message: 'Login successful',
     })
-
   } catch (err) {
     return res.status(500).json({
       error: err.message,

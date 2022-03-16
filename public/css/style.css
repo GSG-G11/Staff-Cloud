@@ -90,14 +90,12 @@ nav img {
 }
 
 .create-job {
-
   padding: 2.4rem 4.8rem;
   background-color: #fff;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
-
-
   margin-top: 2.4rem;
+  display: none;
 }
 
 .form-control {
@@ -247,4 +245,8 @@ textarea {
   display: flex;
   flex-direction: column;
   gap: 0.6rem;
+}
+
+.logoutBtn {
+  display: none;
 }
