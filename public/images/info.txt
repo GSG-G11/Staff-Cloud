@@ -1,0 +1,14 @@
+
+Hope you enjoy your new logo, here are the people that
+made your beautiful logo happen :)
+font name: LinguisticsPro-Regular
+font link: https://github.com/StefanPeev/Linguistics-Pro
+font author: Local Fonts
+font author site: https://localfonts.eu/
+
+
+icon designer: Cuby Design
+icon designer link: /back1design1
+        
+{"bg":"#EBE2F2","icon-gradient-0":"#4B279B","icon-gradient-1":"#DF99D8","font":"#2B1C36","slogan":"#3f304a"}
+      
