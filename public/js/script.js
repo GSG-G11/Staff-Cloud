@@ -1,4 +1,6 @@
+
 /* eslint-disable linebreak-style */
+
 const regBtn = document.querySelector('.regBtn');
 const loginBtn = document.querySelector('.loginBtn');
 const logoutBtn = document.querySelector('.logoutBtn');
@@ -47,6 +49,7 @@ const createForm = () => {
 fetch('/login/user')
   .then((res) => res.json())
   .then((data) => {
+
     if (data.meg == 'yes there have user') {
       regBtn.style.display = 'none';
       loginBtn.style.display = 'none';
@@ -178,3 +181,14 @@ const addPost = () => {
       .catch((err) => console.log(err));
   });
 };
+
+
+fetch('/username')
+  .then((res) => res.json())
+  .then((data) => {
+    if (data.name) {
+      const user = document.querySelector('.userName');
+      user.textContent = data.name;
+    }
+  })
+  .catch((err) => console.log(err));
